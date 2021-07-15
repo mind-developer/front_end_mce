@@ -125,7 +125,3 @@ export const Time = styled.li`
     color: ${(props) => (props.available ? "#999" : colors.white)};
   }
 `;
-
-export const Footer = styled.footer`
-  align-self: flex-end;
-`;
