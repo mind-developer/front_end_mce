@@ -21,33 +21,33 @@ export const Container = styled.div`
 export const Body = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   height: 600px;
   width: 450px;
-  background: white;
-  border-radius: 30px;
-  h1 {
-    color: ${colors.blue};
-    ${fonts[700]};
-    margin: 30px 50px;
-  }
-  > span {
-    color: ${colors.extraLightGray};
-    ${fonts[400]};
-    font-size: 15px;
-    margin: 0px 55px;
-  }
+  background: ${colors.white};
+  border-radius: 10px;
+  padding: 40px 0;
   > div {
     display: flex;
     color: ${colors.blue};
-    ${fonts[400]};
+    ${fonts.DMSans400};
+
     margin: 20px 65px;
     font-weight: 400;
     > a {
       margin-left: 10px;
-      color: blue;
+      color: #000;
     }
+  }
+  a {
+    ${fonts.DMSans400};
+    text-decoration: none;
+    color: ${colors.lightGray};
+  }
+  svg {
+    margin: 0px;
+    font-size: 25px;
   }
 `;
 
@@ -63,4 +63,8 @@ export const Forms = styled(Form)`
     color: ${colors.blue};
     ${fonts[400]};
   }
+`;
+
+export const Image = styled.img`
+  width: 200px;
 `;

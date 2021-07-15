@@ -4,7 +4,7 @@ import { useField } from "@unform/core";
 import { FiAlertCircle } from "react-icons/fi";
 import InputMask from "react-input-mask";
 
-const Input = ({ name, tamanho, formatar, icon: Icon, ...rest }) => {
+const Input = ({ name, color, formatar, children, icon: Icon, ...rest }) => {
   const inputRef = useRef(null);
 
   const [isFocused, setIsFocused] = useState(false);
@@ -31,7 +31,7 @@ const Input = ({ name, tamanho, formatar, icon: Icon, ...rest }) => {
   return (
     <>
       <Container
-        isSize={tamanho}
+        isColor={color}
         isErrored={!!error}
         isFocused={isFocused}
         isFielled={isFielled}
@@ -56,6 +56,7 @@ const Input = ({ name, tamanho, formatar, icon: Icon, ...rest }) => {
             {...rest}
           />
         )}
+        {children}
         {error && (
           <Error title={error}>
             <FiAlertCircle color="#c53030" size={20} />

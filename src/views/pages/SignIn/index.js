@@ -1,17 +1,25 @@
-import React, { useRef, useContext, useEffect } from "react";
+import React, { useRef, useContext, useEffect, useState } from "react";
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
 
-import { Container, Forms, Body } from "./styles";
+import { Container, Forms, Body, Image } from "./styles";
 import * as Yup from "yup";
 import getValidationErrors from "../../../utils/getValidationErrors";
 import { AuthContext } from "../../../contexts/UserContext";
 import { useHistory } from "react-router-dom";
 import { getToken } from "../../../services/auth";
+import colors from "../../../styles/colors";
+import {
+  AiFillCheckCircle,
+  AiFillEye,
+  AiFillEyeInvisible,
+} from "react-icons/ai";
+import Logo from "../../../assets/Logo.png";
 
 function SignIn() {
   const formRef = useRef(null);
   const history = useHistory();
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     if (getToken() != null) {
@@ -42,23 +50,40 @@ function SignIn() {
   return (
     <Container>
       {" "}
-      <span>aaaa</span>
       <Body>
-        <h1>ENTRAR</h1>
-        <span>O seu passaporte para o futuro.</span>
+        <Image src={Logo} />
         <Forms ref={formRef} onSubmit={handleSubmit}>
-          <span>E-mail</span>
-          <Input name="login" placeholder="Youraddres@email.com" />
-          <span>Senha</span>
+          <Input
+            name="login"
+            placeholder="Youraddres@email.com"
+            color={colors.darkBlue}
+          >
+            <AiFillCheckCircle size={25} />
+          </Input>
           <Input
             name="senha"
             placeholder="Enter your password"
-            type="password"
-          />
+            type={!showPassword && "password"}
+          >
+            {!showPassword ? (
+              <AiFillEye
+                color={colors.lightGray}
+                style={{ cursor: "pointer" }}
+                onClick={() => setShowPassword(!showPassword)}
+              />
+            ) : (
+              <AiFillEyeInvisible
+                color={colors.lightGray}
+                style={{ cursor: "pointer" }}
+                onClick={() => setShowPassword(!showPassword)}
+              />
+            )}
+          </Input>
           <Button>LOGIN</Button>
+          <a href="/register">Esqueci a senha</a>
         </Forms>
         <div>
-          Não possui uma conta ? <a href="/register">Registrar-se</a>
+          Não tem conta? <a href="/register">Registrar-se</a>
         </div>
       </Body>
     </Container>

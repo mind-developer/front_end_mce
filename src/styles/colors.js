@@ -1,13 +1,13 @@
 /* eslint-disable import/no-anonymous-default-export */
 /* eslint-disable no-dupe-keys */
 export default {
-  purple: "#7F63F4",
-  lightGray: "#F3F6F9",
+  background: "#E5E5E5",
   white: "#FFFFFF",
-  blue: "#03014C",
-  gray: "#6A707E",
-  extraLightGray: "#ABAFB3",
-  darKGray: "#464A53",
-  gelo: "#f3f3f3",
-  extraLight: "#aaaaaa",
+  orange: "#FEA051",
+  darkBlue: "#402E46",
+  gray: "#F9F9FB",
+  lightGray: "#A3A3A3",
+  red: "#EF3F5F",
+  title: "#3F4254",
+  subtitle: "#626679 ",
 };

@@ -1,22 +1,40 @@
 /* eslint-disable import/no-anonymous-default-export */
 /* eslint-disable no-dupe-keys */
 export default {
-  400: {
-    fontFamily: "Open Sans",
+  DMSans400: {
+    fontFamily: "DM Sans",
     fontStyle: "normal",
     fontWeight: 400,
     fontDisplay: "swap",
   },
-  400: {
-    fontFamily: "Open Sans",
+  DMSans500: {
+    fontFamily: "DM Sans",
     fontStyle: "normal",
-    fontWeight: 600,
+    fontWeight: 500,
     fontDisplay: "swap",
   },
-  700: {
-    fontFamily: "Open Sans",
+  DMSans700: {
+    fontFamily: "DM Sans",
     fontStyle: "normal",
     fontWeight: 700,
+    fontDisplay: "swap",
+  },
+  Montserrat400: {
+    fontFamily: "Montserrat",
+    fontStyle: "normal",
+    fontWeight: 400,
+    fontDisplay: "swap",
+  },
+  Montserrat700: {
+    fontFamily: "Montserrat",
+    fontStyle: "normal",
+    fontWeight: 700,
+    fontDisplay: "swap",
+  },
+  Poppins400: {
+    fontFamily: "Poppins",
+    fontStyle: "normal",
+    fontWeight: 400,
     fontDisplay: "swap",
   },
 };

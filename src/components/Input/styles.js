@@ -1,20 +1,21 @@
 import styled, { css } from "styled-components";
 import colors from "../../styles/colors";
+import fonts from "../../styles/fonts";
 import Tooltip from "../Tooltip";
 
 export const Container = styled.div`
   border-radius: 10px;
-  border-bottom: 1px solid #d9d9d9;
+  /* border-bottom: 1px solid #d9d9d9; */
   width: 100%;
   color: #f4ede8;
-  background-color: #fff;
+  background-color: ${colors.gray};
   transition: all 0.3s;
   display: flex;
   align-items: center;
-  border-radius: 2px;
   height: 45px;
+  padding: 8px 10px;
   & + div {
-    margin-top: 8px;
+    margin-top: 20px;
   }
   ${(props) =>
     props.isErrored &&
@@ -33,9 +34,10 @@ export const Container = styled.div`
       border-color: #ff7d00;
     `}
     ${(props) =>
-    props.isSize &&
+    props.isColor &&
     css`
-      height: ${props.isSize};
+      background-color: ${props.isColor};
+      color: #fff;
     `}
   input {
     background: transparent;
@@ -45,18 +47,23 @@ export const Container = styled.div`
     outline: none;
     height: 45px;
     font-size: 17px;
-    ${(props) =>
-      props.isSize &&
-      css`
-        height: 35px;
-      `}
     &::placeholder {
-      color: #0c359c;
+      color: ${colors.lightGray};
     }
+    ${(props) =>
+      props.isColor &&
+      css`
+        background-color: ${props.isColor};
+        color: ${colors.white};
+        &::placeholder {
+          color: ${colors.white};
+        }
+      `}
   }
   svg {
     margin-right: 18px;
   }
+  ${fonts.DMSans500};
 `;
 
 export const Error = styled(Tooltip)`
