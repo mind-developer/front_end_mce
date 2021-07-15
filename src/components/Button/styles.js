@@ -13,7 +13,8 @@ export const Container = styled.button`
   transition: background-color 0.2s;
   border: 0;
   cursor: pointer;
-  ${fonts.DMSans700};
+  ${fonts.DMSans500};
+  font-weight: normal;
   width: 105%;
   padding: 8px 10px;
 

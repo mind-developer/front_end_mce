@@ -62,6 +62,7 @@ export const NotificationList = styled.div`
   padding: 15px 5px;
   display: ${(props) => (props.visible ? "block" : "none")};
   z-index: 1000;
+  margin-bottom: 50px;
 `;
 
 export const Scroll = styled(PerfectScrollbar)`

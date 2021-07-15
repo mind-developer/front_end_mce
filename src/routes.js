@@ -10,6 +10,7 @@ import SignUp from "./views/pages/SignUp";
 import { getToken } from "./services/auth";
 import Perfil from "./views/pages/Perfil";
 import Agenda from "./views/pages/Agenda";
+import Hours from "./views/pages/Horario";
 
 export const PrivateRouteFuncionarios = ({ component: Component, ...rest }) => {
   return (
@@ -31,10 +32,13 @@ export const PrivateRouteFuncionarios = ({ component: Component, ...rest }) => {
 export const routes = {
   protected: [
     {
-      path: "/dashboard",
+      path: "/dashboard/schedule",
       component: () => <Agenda />,
     },
-
+    {
+      path: "/dashboard",
+      component: () => <Hours />,
+    },
     {
       path: "/dashboard/profile",
       component: () => <Perfil />,

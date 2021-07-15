@@ -7,7 +7,7 @@ export const Container = styled.div`
   margin: 50px auto;
   display: flex;
   flex-direction: column;
-
+  justify-content: space-around;
   header {
     display: flex;
     align-self: center;
@@ -99,50 +99,33 @@ export const Content = styled.div`
 export const Time = styled.li`
   display: flex;
   border-radius: 4px;
-  align-self: flex-start;
-  align-items: center;
+  flex-direction: column;
+  align-self: center;
   margin-left: 10px;
-  padding: 3px 20px;
+  justify-content: center;
+  padding: 5px 20px;
   height: 56px;
   width: 248px;
   border-radius: 0px;
   margin-bottom: 30px;
   color: ${colors.white};
+  background: ${colors.orange};
   border-radius: 10px;
   opacity: ${(props) => (props.past ? 0.6 : 1)};
   strong {
     color: ${(props) => (props.available ? "#999" : colors.white)};
     font-size: 20px;
-    ${fonts[400]};
+    ${fonts.DMSans700};
   }
   span {
     display: block;
     margin-top: 3px;
-    ${fonts[400]};
+    ${fonts.DMSans400};
     font-weight: normal;
     color: ${(props) => (props.available ? "#999" : colors.white)};
   }
 `;
 
-export const ButtonSecundary = styled.button`
-  background: transparent;
-  margin: 23px 8px 5px 0px;
-  border: 1px solid ${colors.orange};
-  box-sizing: border-box;
-  border-radius: 10px;
-  height: 56px;
-  cursor: pointer;
-  width: 200px;
-  ${fonts[700]};
-  color: ${colors.orange};
-  &:hover {
-    background-color: ${colors.orange};
-    color: #fff;
-  }
-  ${(props) =>
-    props.isActive &&
-    css`
-      background-color: ${colors.orange};
-      color: #fff;
-    `}
+export const Footer = styled.footer`
+  align-self: flex-end;
 `;

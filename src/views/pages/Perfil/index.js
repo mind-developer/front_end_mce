@@ -4,9 +4,12 @@ import Input from "../../../components/Input";
 import { AuthContext } from "../../../contexts/UserContext";
 import { getId } from "../../../services/auth";
 import * as Yup from "yup";
+import ProfileImg from "../../../assets/profile.jpeg";
 
-import { Container, Forms } from "./styles";
+import { Container, Forms, Profile, ContainerProfile } from "./styles";
 import getValidationErrors from "../../../utils/getValidationErrors";
+import { BiEdit } from "react-icons/bi";
+import colors from "../../../styles/colors";
 
 function Perfil() {
   const [user, setUser] = useState({});
@@ -43,13 +46,22 @@ function Perfil() {
 
   return (
     <Container>
-      <h1>Meu Perfil</h1>
+      <ContainerProfile>
+        <Profile src={ProfileImg} />
+        <button>
+          <BiEdit />
+        </button>
+      </ContainerProfile>
       <Forms onSubmit={handleSubmit} initialData={{ ...user, senha: "" }}>
-        <Input name="nome" placeholder="Nome completo" />
-        <Input name="nivel" placeholder="Nivel" type="number" />
-        <Input name="acesso" placeholder="Nivel" type="number" />
+        <Input name="nome" placeholder="Nome do Usuário" />
+        <Input
+          name="cpf"
+          formatar="(99) 9 9999-9999"
+          placeholder="Número de telefone"
+        />
+        <Input name="email" placeholder="E-mail" />
         <Input name="senha" placeholder="Senha" type="password" />
-        <Button>Salvar</Button>
+        <Button style={{ width: "110%" }}>Salvar alterações </Button>
       </Forms>
     </Container>
   );
