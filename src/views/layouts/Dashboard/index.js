@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { routes } from "../../../routes";
 import { Switch, Route } from "react-router-dom";
-import Header from "./Header";
-import Sidebar from "./SideBar";
 
 import { Container, Content } from "./styles";
+import Notifications from "./Notification";
 
 function Dashboard({ props }) {
   const [title, setTitle] = useState("");
@@ -21,21 +20,17 @@ function Dashboard({ props }) {
 
   return (
     <Container>
-      <Sidebar ativado={title} />
+      <Notifications />
       <Content>
-        <Header name={title} />
         <Switch>
-          {routes.protected.map(
-            (route, index) =>
-              route?.role?.find((elemento) => elemento == 999) && (
-                <Route
-                  key={index.toString()}
-                  path={route.path}
-                  exact
-                  component={route.component}
-                />
-              )
-          )}
+          {routes.protected.map((route, index) => (
+            <Route
+              key={index.toString()}
+              path={route.path}
+              exact
+              component={route.component}
+            />
+          ))}
         </Switch>
       </Content>
     </Container>

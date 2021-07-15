@@ -19,17 +19,19 @@ export const Container = styled.div`
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     padding-top: 30px;
+
     button {
       border: 0;
       width: 50px;
       height: 50px;
-      background: #f9f9fb;
+      background: ${colors.gray};
       border-radius: 50%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      color: #000;
       :hover {
         background: #fea051;
         svg {
@@ -130,8 +132,8 @@ export const ButtonSecundary = styled.button`
   box-sizing: border-box;
   border-radius: 10px;
   height: 56px;
-  padding: 0 16px;
   cursor: pointer;
+  width: 200px;
   ${fonts[700]};
   color: #fea051;
   &:hover {

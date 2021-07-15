@@ -26,7 +26,7 @@ export const Body = styled.div`
   height: 600px;
   width: 450px;
   background: white;
-  border-radius: 30px;
+  border-radius: 10px;
   padding: 50px 0px;
 
   > div {
