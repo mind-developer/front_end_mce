@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useContext } from "react";
+import React, { useEffect, useRef, useContext, useState } from "react";
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
 import * as Yup from "yup";
@@ -8,11 +8,15 @@ import getValidationErrors from "../../../utils/getValidationErrors";
 import { AuthContext } from "../../../contexts/UserContext";
 import { useHistory } from "react-router-dom";
 import { getToken } from "../../../services/auth";
+import colors from "../../../styles/colors";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 function Cadastro() {
   const formRef = useRef(null);
   const { createUser } = useContext(AuthContext);
   const history = useHistory();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordCofirmation, setShowPasswordCofirmation] = useState(false);
 
   useEffect(() => {
     if (getToken() != null) {
@@ -52,22 +56,60 @@ function Cadastro() {
   return (
     <Container>
       <Body>
-        <h1>CADASTRO</h1>
         <Forms ref={formRef} onSubmit={handleSubmit}>
-          <span>Nome completo</span>
-          <Input name="nome" placeholder="Your name" />
-          <span>E-mail</span>
-          <Input name="email" placeholder="Youraddres@email.com" />
-          <span>CPF</span>
-          <Input name="cpf" formatar="999.999.999-99" placeholder="your cpf" />
-          <span>Senha</span>
-          <Input name="senha" placeholder="****" type="password" />
-          <span>Confirma senha</span>
-          <Input name="senha_confirmation" placeholder="****" type="password" />
+          <Input name="nome" placeholder="Usuario" />
+          <Input
+            name="cpf"
+            formatar="(99) 9 9999-9999"
+            placeholder="Telefone"
+          />
+          <Input name="email" placeholder="E-mail" />
+          <Input
+            name="senha"
+            placeholder="Senha"
+            type={!showPassword && "password"}
+          >
+            {!showPassword ? (
+              <AiFillEye
+                color={colors.lightGray}
+                style={{ cursor: "pointer" }}
+                onClick={() => setShowPassword(!showPassword)}
+              />
+            ) : (
+              <AiFillEyeInvisible
+                color={colors.lightGray}
+                style={{ cursor: "pointer" }}
+                onClick={() => setShowPassword(!showPassword)}
+              />
+            )}
+          </Input>
+          <Input
+            name="senha_confirmation"
+            placeholder="Confirma senha"
+            type={!showPasswordCofirmation && "password"}
+          >
+            {!showPasswordCofirmation ? (
+              <AiFillEye
+                color={colors.lightGray}
+                style={{ cursor: "pointer" }}
+                onClick={() =>
+                  setShowPasswordCofirmation(!showPasswordCofirmation)
+                }
+              />
+            ) : (
+              <AiFillEyeInvisible
+                color={colors.lightGray}
+                onClick={() =>
+                  setShowPasswordCofirmation(!showPasswordCofirmation)
+                }
+                style={{ cursor: "pointer" }}
+              />
+            )}
+          </Input>
           <Button>CADASTRAR</Button>
         </Forms>
         <div>
-          Já possui uma conta ? <a href="/">Entrar</a>
+          Já tem conta ? <a href="/">Login</a>
         </div>
       </Body>
     </Container>

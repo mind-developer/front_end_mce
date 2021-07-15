@@ -21,35 +21,28 @@ export const Container = styled.div`
 export const Body = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   height: 600px;
   width: 450px;
   background: white;
   border-radius: 30px;
-  padding-bottom: 50px;
-  h1 {
-    color: ${colors.blue};
-    ${fonts[700]};
-    margin: 40px 30px 20px 50px;
-  }
-  > span {
-    color: ${colors.extraLightGray};
-    ${fonts[400]};
-    font-size: 15px;
-    margin: 0px 55px;
-  }
+  padding: 50px 0px;
 
   > div {
     display: flex;
     color: ${colors.blue};
-    ${fonts[400]};
+    ${fonts.DMSans400};
+
     margin: 20px 65px;
     font-weight: 400;
-    > a {
-      margin-left: 5px;
-      color: blue;
-    }
+  }
+  a {
+    margin-left: 5px;
+    color: #000;
+    text-decoration: none;
+    ${fonts.DMSans400};
+    font-weight: bold;
   }
   overflow: auto;
   -ms-overflow-style: none;
@@ -69,6 +62,10 @@ export const Body = styled.div`
     border-radius: 30px !important;
     margin-right: 30px !important;
   }
+  svg {
+    margin: 0px;
+    font-size: 25px;
+  }
 `;
 
 export const Forms = styled(Form)`
@@ -80,6 +77,6 @@ export const Forms = styled(Form)`
     margin-top: 20px;
     font-size: 12px;
     color: ${colors.blue};
-    ${fonts[400]};
+    ${fonts.DMSans700};
   }
 `;

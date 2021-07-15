@@ -41,9 +41,10 @@ export const Body = styled.div`
     }
   }
   a {
-    ${fonts.DMSans400};
+    ${fonts.DMSans700};
     text-decoration: none;
     color: ${colors.lightGray};
+    font-weight: bold;
   }
   svg {
     margin: 0px;
@@ -61,7 +62,7 @@ export const Forms = styled(Form)`
     margin-top: 20px;
     font-size: 12px;
     color: ${colors.blue};
-    ${fonts[400]};
+    ${fonts.DMSans700};
   }
 `;
 

@@ -53,16 +53,12 @@ function SignIn() {
       <Body>
         <Image src={Logo} />
         <Forms ref={formRef} onSubmit={handleSubmit}>
-          <Input
-            name="login"
-            placeholder="Youraddres@email.com"
-            color={colors.darkBlue}
-          >
+          <Input name="login" placeholder="Login" color={colors.darkBlue}>
             <AiFillCheckCircle size={25} />
           </Input>
           <Input
             name="senha"
-            placeholder="Enter your password"
+            placeholder="Senha"
             type={!showPassword && "password"}
           >
             {!showPassword ? (
