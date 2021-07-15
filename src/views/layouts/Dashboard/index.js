@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { routes } from "../../../routes";
+import { BsListCheck } from "react-icons/bs";
 import { Switch, Route } from "react-router-dom";
 
 import { Container, Content } from "./styles";
@@ -33,6 +34,11 @@ function Dashboard({ props }) {
           ))}
         </Switch>
       </Content>
+      <footer>
+        <button>
+          <BsListCheck />
+        </button>
+      </footer>
     </Container>
   );
 }

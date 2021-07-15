@@ -49,7 +49,7 @@ function Agenda() {
             </Content>
           ) : (
             <Content>
-              <div>9h</div>
+              <div>{hours[index]}h</div>
               <span></span>
             </Content>
           )
