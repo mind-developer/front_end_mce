@@ -19,7 +19,7 @@ export const Container = styled.div`
     border-top-right-radius: 30px;
     padding-top: 30px;
 
-    button {
+    > button {
       border: 0;
       width: 50px;
       height: 50px;
@@ -130,15 +130,12 @@ export const ButtonSecundary = styled.button`
   border: 1px solid ${colors.orange};
   box-sizing: border-box;
   border-radius: 10px;
+  cursor: auto;
   height: 56px;
-  cursor: pointer;
   width: 200px;
   ${fonts[700]};
   color: ${colors.orange};
-  &:hover {
-    background-color: ${colors.orange};
-    color: #fff;
-  }
+
   ${(props) =>
     props.isActive &&
     css`

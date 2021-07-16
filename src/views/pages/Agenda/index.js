@@ -79,16 +79,18 @@ function Agenda() {
               {time.appointment ? (
                 <>
                   {" "}
-                  <ButtonSecundary isActive>Disponivel</ButtonSecundary>
-                  <ButtonSecundary isActive={false}>
+                  <ButtonSecundary isActive={false}>Disponivel</ButtonSecundary>
+                  <ButtonSecundary isActive>
                     Não disponivel
                   </ButtonSecundary>{" "}
                 </>
               ) : (
                 <>
                   {" "}
-                  <ButtonSecundary isActive={false}>Disponivel</ButtonSecundary>
-                  <ButtonSecundary isActive>Não disponivel</ButtonSecundary>
+                  <ButtonSecundary isActive>Disponivel</ButtonSecundary>
+                  <ButtonSecundary isActive={false}>
+                    Não disponivel
+                  </ButtonSecundary>
                 </>
               )}
             </Time>
