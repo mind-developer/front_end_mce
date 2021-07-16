@@ -21,13 +21,14 @@ export const Forms = styled(Form)`
 
 export const ContainerProfile = styled.div`
   margin-left: 32px;
-  button {
+  label {
     position: relative;
     background: ${colors.white};
     border-radius: 50%;
     padding: 2px;
     right: 23px;
     bottom: 2px;
+    cursor: pointer;
   }
   svg {
     background: ${colors.orange};

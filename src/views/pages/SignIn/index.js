@@ -43,7 +43,11 @@ function SignIn() {
       formRef.current?.setErrors({});
       data.provider = true;
       const resp = await login(data);
-      if (resp == true) history.push("/dashboard");
+      if (resp == true) {
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
+      }
     } catch (err) {
       const errors = getValidationErrors(err);
       formRef.current?.setErrors(errors);

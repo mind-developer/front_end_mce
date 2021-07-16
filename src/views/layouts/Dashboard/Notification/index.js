@@ -96,7 +96,7 @@ export default function Notifications() {
 
       <Badge hasUnread={hasUnread}>
         <button onClick={handleToggleVisible}>
-          <ProfileImg src={Profile} />
+          <ProfileImg src={user?.avatar?.url || Profile} />
         </button>
         <div>
           <button onClick={() => history.push("/dashboard/profile")}>

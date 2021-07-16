@@ -31,15 +31,17 @@ const AuthProvider = ({ children }) => {
 
   const updateUser = async (data) => {
     try {
+      const newUser = { ...user, ...data };
+      if (data.avatar) {
+        delete data.avatar;
+      }
       const resp = await api.put(`/users`, data);
-      if (data.oldPassword) {
+      if (newUser.oldPassword) {
         delete data.oldPassword;
         delete data.password;
         delete data.confirmPassword;
       }
-      const newUser = { ...user, ...data };
       localStorage.setItem("user", JSON.stringify(newUser));
-      console.log(newUser);
       toast.success(resp?.data?.message);
       return resp.data;
     } catch (err) {

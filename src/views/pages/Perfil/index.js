@@ -10,11 +10,34 @@ import { Container, Forms, Profile, ContainerProfile } from "./styles";
 import getValidationErrors from "../../../utils/getValidationErrors";
 import { BiEdit } from "react-icons/bi";
 import { toast } from "react-toastify";
+import api from "../../../services/api";
 
 function Perfil() {
   const formRef = useRef(null);
 
   const { updateUser, user } = useContext(AuthContext);
+
+  const handleImgProfile = async (img) => {
+    try {
+      const formData = new FormData();
+      formData.append("file", img, img.filename);
+      const { data } = await api.post("files", formData);
+
+      await updateUser({
+        ...user,
+        avatar_id: data.id,
+        avatar: {
+          ...data,
+        },
+      });
+      toast.success("Alterado com sucesso");
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
+    } catch (err) {
+      toast.error(err?.response?.data?.error || "Ops... Ocorreu um erro");
+    }
+  };
 
   const handleSubmit = async (data) => {
     try {
@@ -58,10 +81,17 @@ function Perfil() {
   return (
     <Container>
       <ContainerProfile>
-        <Profile src={ProfileImg} />
-        <button>
+        <input
+          id="selecao-arquivo"
+          type="file"
+          accept="image/*"
+          style={{ display: "none" }}
+          onChange={(e) => handleImgProfile(e.target.files[0])}
+        />
+        <Profile src={`${user?.avatar?.url}` || ProfileImg} />
+        <label htmlFor="selecao-arquivo">
           <BiEdit />
-        </button>
+        </label>
       </ContainerProfile>
       <Forms onSubmit={handleSubmit} initialData={user}>
         <Input name="name" placeholder="Nome do Usuário" />
