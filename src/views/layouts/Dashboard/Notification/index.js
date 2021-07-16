@@ -17,10 +17,12 @@ import {
   Notification,
   ProfileImg,
 } from "./styles";
+import { useHistory } from "react-router-dom";
 
 export default function Notifications() {
   const [visible, setVisible] = useState(false);
   const [notifications, setNotifications] = useState([]);
+  const history = useHistory();
 
   const hasUnread = useMemo(
     () => !!notifications.find((notification) => notification.read === false),
@@ -58,6 +60,8 @@ export default function Notifications() {
         notification._id === id ? { ...notification, read: true } : notification
       )
     );
+    handleToggleVisible();
+    history.push("/dashboard");
   }
 
   return (
@@ -65,7 +69,14 @@ export default function Notifications() {
       <NotificationList visible={visible}>
         <Scroll>
           {notifications.map((notification) => (
-            <Notification key={notification._id} unread={!notification.read}>
+            <Notification
+              key={notification._id}
+              unread={!notification.read}
+              onClick={() => {
+                handleToggleVisible();
+                history.push("/dashboard");
+              }}
+            >
               <p>{notification.content}</p>
               <time>{notification.timeDistance}</time>
               {!notification.read && (
@@ -86,7 +97,7 @@ export default function Notifications() {
           <ProfileImg src={Profile} />
         </button>
         <div>
-          <button>
+          <button onClick={() => history.push("/dashboard/profile")}>
             <strong>Adam Sander</strong>
             <span>Meu Perfil</span>
           </button>

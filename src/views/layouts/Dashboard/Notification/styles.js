@@ -74,6 +74,7 @@ export const Scroll = styled(PerfectScrollbar)`
 export const Notification = styled.div`
   color: #000;
   ${fonts.Poppins400};
+  cursor: pointer;
   & + div {
     margin-top: 15px;
     padding-top: 15px;

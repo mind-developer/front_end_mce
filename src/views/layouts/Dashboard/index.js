@@ -1,23 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { routes } from "../../../routes";
 import { BsListCheck } from "react-icons/bs";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useHistory } from "react-router-dom";
 
 import { Container, Content } from "./styles";
 import Notifications from "./Notification";
 
 function Dashboard({ props }) {
-  const [title, setTitle] = useState("");
-  const { location } = props;
-
-  useEffect(() => {
-    // eslint-disable-next-line array-callback-return
-    routes?.protected?.map((route) => {
-      if (route?.path == location?.pathname) {
-        setTitle(route.title);
-      }
-    });
-  }, [title, location]);
+  const history = useHistory();
 
   return (
     <Container>
@@ -35,7 +25,7 @@ function Dashboard({ props }) {
         </Switch>
       </Content>
       <footer>
-        <button>
+        <button onClick={() => history.push("/dashboard/schedule")}>
           <BsListCheck />
         </button>
       </footer>
