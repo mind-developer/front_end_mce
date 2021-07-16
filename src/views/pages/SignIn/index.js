@@ -32,15 +32,18 @@ function SignIn() {
     try {
       formRef.current?.setErrors({});
       const schema = Yup.object().shape({
-        login: Yup.string().required("login obrigatório"),
-        senha: Yup.string().required("Senha obrigatória"),
+        email: Yup.string()
+          .required("email obrigatório")
+          .email("Deve ser um E-mail"),
+        password: Yup.string().required("Senha obrigatória"),
       });
       await schema.validate(data, {
         abortEarly: false,
       });
       formRef.current?.setErrors({});
+      data.provider = true;
       const resp = await login(data);
-      history.push("/dashboard");
+      if (resp == true) history.push("/dashboard");
     } catch (err) {
       const errors = getValidationErrors(err);
       formRef.current?.setErrors(errors);
@@ -53,11 +56,11 @@ function SignIn() {
       <Body>
         <Image src={Logo} />
         <Forms ref={formRef} onSubmit={handleSubmit}>
-          <Input name="login" placeholder="Login" color={colors.darkBlue}>
+          <Input name="email" placeholder="Login" color={colors.darkBlue}>
             <AiFillCheckCircle size={25} />
           </Input>
           <Input
-            name="senha"
+            name="password"
             placeholder="Senha"
             type={!showPassword && "password"}
           >

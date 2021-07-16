@@ -61,11 +61,11 @@ const AuthProvider = ({ children }) => {
   const signIn = async (credenciais) => {
     console.log(credenciais);
     try {
-      const response = await api.post("/auth", credenciais);
-      if (response.data?.user?.acesso == 1) {
+      const response = await api.post("/sessions", credenciais);
+      if (response.data?.user?.provider == 1) {
         login(
           response.data?.token,
-          response.data?.user?.nivel,
+          response.data?.user?.provider,
           response.data?.user?.id
         );
 

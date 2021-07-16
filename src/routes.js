@@ -18,7 +18,7 @@ export const PrivateRouteFuncionarios = ({ component: Component, ...rest }) => {
       {...{ rest }}
       render={
         (props) =>
-          getToken() == null ? (
+          getToken() != null ? (
             <Component {...{ props }} />
           ) : (
             <Redirect to={{ pathname: "/", state: { from: props.location } }} />

@@ -28,14 +28,14 @@ function Cadastro() {
     try {
       formRef.current?.setErrors({});
       const schema = Yup.object().shape({
-        nome: Yup.string().required("Nome obrigatório"),
-        cpf: Yup.string().required("Cpf obrigatório").min(11, "CPF Inválido"),
+        name: Yup.string().required("Nome obrigatório"),
+        phone: Yup.string().required("Cpf obrigatório").min(11, "CPF Inválido"),
         email: Yup.string()
           .required("E-mail obrigatório")
           .email("Digite um e-mail válido"),
-        senha: Yup.string().required("É obrigatória"),
-        senha_confirmation: Yup.string().oneOf(
-          [Yup.ref("senha"), null],
+        password: Yup.string().required("É obrigatória"),
+        confirmPassword: Yup.string().oneOf(
+          [Yup.ref("password"), null],
           "Não são iguais"
         ),
       });
@@ -44,7 +44,7 @@ function Cadastro() {
       });
       formRef.current?.setErrors({});
 
-      delete data.senha_confirmation;
+      delete data.confirmPassword;
       await createUser(data);
       history.push("/");
     } catch (err) {
@@ -57,15 +57,15 @@ function Cadastro() {
     <Container>
       <Body>
         <Forms ref={formRef} onSubmit={handleSubmit}>
-          <Input name="nome" placeholder="Usuario" />
+          <Input name="name" placeholder="Usuario" />
           <Input
-            name="cpf"
+            name="phone"
             formatar="(99) 9 9999-9999"
             placeholder="Telefone"
           />
           <Input name="email" placeholder="E-mail" />
           <Input
-            name="senha"
+            name="password"
             placeholder="Senha"
             type={!showPassword && "password"}
           >
@@ -84,7 +84,7 @@ function Cadastro() {
             )}
           </Input>
           <Input
-            name="senha_confirmation"
+            name="confirmPassword"
             placeholder="Confirma senha"
             type={!showPasswordCofirmation && "password"}
           >
