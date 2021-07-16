@@ -2,9 +2,10 @@ import React, { useState, useEffect, useMemo } from "react";
 
 import { MdNotifications } from "react-icons/md";
 import Profile from "../../../../assets/profile.jpeg";
+import api from "../../../../services/api";
 
-// import { parseISO, formatDistance } from "date-fns";
-// import pt from "date-fns/locale/pt";
+import { parseISO, formatDistance } from "date-fns";
+import pt from "date-fns/locale/pt";
 
 // import api from "~/services/api";
 
@@ -19,38 +20,38 @@ import {
 
 export default function Notifications() {
   const [visible, setVisible] = useState(false);
-  const [notifications, setNotifications] = useState([{}]);
+  const [notifications, setNotifications] = useState([]);
 
   const hasUnread = useMemo(
     () => !!notifications.find((notification) => notification.read === false),
     [notifications]
   );
 
-  //   useEffect(() => {
-  //     async function loadNotifications() {
-  //       const response = await api.get("/notifications");
+  useEffect(() => {
+    async function loadNotifications() {
+      const response = await api.get("/notifications");
 
-  //       const data = response.data.map((notification) => ({
-  //         ...notification,
-  //         timeDistance: formatDistance(
-  //           parseISO(notification.createdAt),
-  //           new Date(),
-  //           { addSuffix: true, locale: pt }
-  //         ),
-  //       }));
+      const data = response.data.map((notification) => ({
+        ...notification,
+        timeDistance: formatDistance(
+          parseISO(notification.createdAt),
+          new Date(),
+          { addSuffix: true, locale: pt }
+        ),
+      }));
 
-  //       setNotifications(data);
-  //     }
+      setNotifications(data);
+    }
 
-  //     loadNotifications();
-  //   }, []);
+    loadNotifications();
+  }, []);
 
   function handleToggleVisible() {
     setVisible(!visible);
   }
 
   async function handleMarkAsRead(id) {
-    // await api.put(`/notifications/${id}`);
+    await api.put(`/notifications/${id}`);
 
     setNotifications(
       notifications.map((notification) =>
@@ -80,7 +81,7 @@ export default function Notifications() {
         </Scroll>
       </NotificationList>
 
-      <Badge hasUnread={true}>
+      <Badge hasUnread={hasUnread}>
         <button onClick={handleToggleVisible}>
           <ProfileImg src={Profile} />
         </button>

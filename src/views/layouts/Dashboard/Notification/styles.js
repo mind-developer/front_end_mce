@@ -3,6 +3,7 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 
 import styled, { css } from "styled-components";
 import colors from "../../../../styles/colors";
+import fonts from "../../../../styles/fonts";
 
 export const Container = styled.div`
   display: flex;
@@ -72,6 +73,7 @@ export const Scroll = styled(PerfectScrollbar)`
 
 export const Notification = styled.div`
   color: #000;
+  ${fonts.Poppins400};
   & + div {
     margin-top: 15px;
     padding-top: 15px;
