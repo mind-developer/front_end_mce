@@ -16,7 +16,6 @@ import pt from "date-fns/locale/pt";
 
 import { Container, Content, Time } from "./styles";
 import api from "../../../services/api";
-import addHours from "date-fns/addHours";
 
 const range = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
@@ -28,20 +27,6 @@ function Agenda() {
     () => format(date, "d 'de' MMMM", { locale: pt }),
     [date]
   );
-
-  // const ScheduleUser = () => {
-  //   const newSchedule = hours.map((num) => {
-  //     const result = schedule.find((sc) => sc.hour === num);
-
-  //     if (result) return result;
-  //     return {};
-  //   });
-  //   setSchedule(newSchedule);
-  // };
-
-  // useEffect(() => {
-  //   ScheduleUser();
-  // }, []);
 
   useEffect(() => {
     async function loadSchedule() {
