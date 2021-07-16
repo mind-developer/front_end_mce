@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useContext } from "react";
 
 import { MdNotifications } from "react-icons/md";
 import Profile from "../../../../assets/profile.jpeg";
@@ -18,11 +18,13 @@ import {
   ProfileImg,
 } from "./styles";
 import { useHistory } from "react-router-dom";
+import { AuthContext } from "../../../../contexts/UserContext";
 
 export default function Notifications() {
   const [visible, setVisible] = useState(false);
   const [notifications, setNotifications] = useState([]);
   const history = useHistory();
+  const { user } = useContext(AuthContext);
 
   const hasUnread = useMemo(
     () => !!notifications.find((notification) => notification.read === false),
@@ -98,7 +100,7 @@ export default function Notifications() {
         </button>
         <div>
           <button onClick={() => history.push("/dashboard/profile")}>
-            <strong>Adam Sander</strong>
+            <strong>{user?.name}</strong>
             <span>Meu Perfil</span>
           </button>
         </div>

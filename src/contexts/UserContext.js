@@ -1,18 +1,15 @@
 import React, { createContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import api from "../services/api";
-import { getId, login } from "../services/auth";
+import { getId, getUser, login } from "../services/auth";
 
 const AuthContext = createContext({});
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(getUser() || {});
 
   const loadingUser = async () => {
     try {
-      const id = getId();
-      const { data } = await api.get(`/users/${id}`);
-      return data;
     } catch (err) {
       console.log(err);
       return false;
@@ -32,9 +29,17 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const updateUser = async (data, id) => {
+  const updateUser = async (data) => {
     try {
-      const resp = await api.put(`/users/${id}`, data);
+      const resp = await api.put(`/users`, data);
+      if (data.oldPassword) {
+        delete data.oldPassword;
+        delete data.password;
+        delete data.confirmPassword;
+      }
+      const newUser = { ...user, ...data };
+      localStorage.setItem("user", JSON.stringify(newUser));
+      console.log(newUser);
       toast.success(resp?.data?.message);
       return resp.data;
     } catch (err) {
@@ -63,11 +68,7 @@ const AuthProvider = ({ children }) => {
     try {
       const response = await api.post("/sessions", credenciais);
       if (response.data?.user?.provider == 1) {
-        login(
-          response.data?.token,
-          response.data?.user?.provider,
-          response.data?.user?.id
-        );
+        login(response.data?.token, response.data.user);
 
         toast.success("Bem Vindo!");
         return true;
@@ -90,6 +91,7 @@ const AuthProvider = ({ children }) => {
         loadingUser,
         updateUser,
         createUser,
+        user,
       }}
     >
       {children}
